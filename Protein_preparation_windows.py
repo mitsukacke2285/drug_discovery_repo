@@ -16,11 +16,11 @@
 # - Scrubber (package: "molscrub")
 # - py3Dmol
 
-# In[1]:
+# In[2]:
 
 
 import subprocess
-subprocess.run(['pip', 'install', 'rdkit', 'pdbfixer', 'openmm', 'mdanalysis', 'molscrub', 'py3dmol', 'biopython'])
+subprocess.run(['pip', 'install', 'rdkit', 'pdbfixer', 'openmm', 'mdanalysis', 'molscrub', 'py3dmol', 'biopython', 'openbabel'])
 
 
 # In[16]:
@@ -29,11 +29,12 @@ subprocess.run(['pip', 'install', 'rdkit', 'pdbfixer', 'openmm', 'mdanalysis', '
 #!pip install rdkit pdbfixer openmm mdanalysis molscrub py3dmol biopython
 
 
-# In[2]:
+# In[3]:
 
 
 # Install in Powershell
 #!conda install -c conda-forge openbabel
+get_ipython().system('pip install openbabel')
 
 
 # # Step 2: Building Atomistic Ligand Model
@@ -49,7 +50,7 @@ import requests
 pdb_id = input("Enter PDB code: ") # The Protein ID we're looking at
 
 # Start by making a directory for us to work in and stage our intermediate files
-protein_directory = "Molecular_docking/protein_files"
+protein_directory = "molecular_docking/protein_files"
 protein_filename = f"{pdb_id}.pdb"
 protein_filepath = os.path.join(protein_directory, protein_filename)
 
