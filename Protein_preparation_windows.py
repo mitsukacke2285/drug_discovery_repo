@@ -34,7 +34,7 @@ subprocess.run(['pip', 'install', 'rdkit', 'pdbfixer', 'openmm', 'mdanalysis', '
 
 # Install in Powershell
 #!conda install -c conda-forge openbabel
-get_ipython().system('pip install openbabel')
+#!pip install openbabel
 
 
 # # Step 2: Building Atomistic Ligand Model
