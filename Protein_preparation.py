@@ -16,20 +16,20 @@
 # - Scrubber (package: "molscrub")
 # - py3Dmol
 
-# In[2]:
+# In[1]:
 
 
 import subprocess
 subprocess.run(['pip', 'install', 'rdkit', 'pdbfixer', 'openmm', 'mdanalysis', 'molscrub', 'py3dmol', 'biopython', 'openbabel', 'ipython'])
 
 
-# In[16]:
+# In[ ]:
 
 
 #!pip install rdkit pdbfixer openmm mdanalysis molscrub py3dmol biopython ipython
 
 
-# In[3]:
+# In[ ]:
 
 
 # Install in Powershell
@@ -41,7 +41,7 @@ subprocess.run(['pip', 'install', 'rdkit', 'pdbfixer', 'openmm', 'mdanalysis', '
 
 # ## Step 2.1 Download PDB file
 
-# In[17]:
+# In[2]:
 
 
 import os
@@ -60,7 +60,7 @@ os.makedirs(protein_directory, exist_ok=True)
 print(protein_filepath)
 
 
-# In[18]:
+# In[3]:
 
 
 # Download the protein file
@@ -72,7 +72,7 @@ protein_request = requests.get(protein_url)
 protein_request.raise_for_status() # Check for errors
 
 
-# In[19]:
+# In[4]:
 
 
 # Save the actual text of the returned JSON blob as the PDB file we're used to
@@ -81,7 +81,7 @@ with open(protein_filepath, "w") as f:
 print(f"Saved protein to {protein_filepath}")
 
 
-# In[20]:
+# In[5]:
 
 
 # Display raw PDB file
@@ -101,7 +101,7 @@ render_text(protein_request.text)
 
 # ## Step 2.2 Select one domain/chain of protein to work with
 
-# In[21]:
+# In[6]:
 
 
 # From now on we will work with only one domain/chain of the target protein
@@ -138,7 +138,7 @@ print(f"Chain A of {pdb_id} was selected and saved as {pdb_id}_A.pdb!" )
 
 # ## Step 3.1 Fixing the PDB structure
 
-# In[22]:
+# In[7]:
 
 
 # Load the PDB into the PDBFixer class
@@ -165,7 +165,7 @@ fixer.addMissingHydrogens(pH=7.4)
 print("Fixing protein complete!")
 
 
-# In[10]:
+# In[8]:
 
 
 # Adding missing heavy atoms to PDB structure
@@ -182,7 +182,7 @@ print(f"Structure was saved as {pdb_id}_A_fix_heavy.pdb")
 
 # ## Step 3.2 Simple energy minimization
 
-# In[11]:
+# In[9]:
 
 
 from openmm.app import ForceField
@@ -207,7 +207,7 @@ system.getForces()
 print("Force field loaded!")
 
 
-# In[12]:
+# In[10]:
 
 
 # Loop through residues and print residue numbers
@@ -228,7 +228,7 @@ for model in structure:
             print(f"Chain {chain.id}, Residue {res_name} {res_num}")
 
 
-# In[13]:
+# In[11]:
 
 
 from openmm import VerletIntegrator
@@ -265,7 +265,7 @@ print(f'Minimization complete. Minimized structure saved to {protein_directory}/
 
 # ## Step 3.3 Adding Partial Charge Information to the Receptor for Docking
 
-# In[14]:
+# In[12]:
 
 
 print("Generating pdbqt file...")
@@ -284,19 +284,19 @@ print(f"{pdb_id}_A.pdbqt is ready for docking!")
 
 # # Visualization with py3Dmol
 
-# In[15]:
+# In[ ]:
 
 
 # view raw PDB
-import py3Dmol
+#import py3Dmol
 
-v = py3Dmol.view()
-v.addModel(open(f"{protein_directory}/{pdb_id}_A_fixed.pdb").read())
-v.setStyle({'chain':'A'}, {'cartoon': {'color': '#0e9674'}})
-v.setStyle({'chain':'B'}, {'cartoon': {'color': '#c46225'}})
-v.zoomTo({'model':0})
-v.rotate(90, "z")
-v.rotate(-25, "y")
+#v = py3Dmol.view()
+#v.addModel(open(f"{protein_directory}/{pdb_id}_A_fixed.pdb").read())
+#v.setStyle({'chain':'A'}, {'cartoon': {'color': '#0e9674'}})
+#v.setStyle({'chain':'B'}, {'cartoon': {'color': '#c46225'}})
+#v.zoomTo({'model':0})
+#v.rotate(90, "z")
+#v.rotate(-25, "y")
 
 
 # In[ ]:
