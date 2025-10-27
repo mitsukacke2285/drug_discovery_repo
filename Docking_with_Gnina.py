@@ -427,7 +427,7 @@ if selection == "a":
     print("Redocking with extracted ligand")
     subprocess.run([
     "./gnina",
-    "--cpu",
+    "--no_gpu",
     "-r", f"{protein_directory}/{pdb_id}_A.pdbqt",
     "-l", f"{ligand_directory}/{ligand_id}_ideal.sdf",
     "--autobox_ligand", f"{ligand_directory}/{ligand_id}_corrected_pose.sdf",
@@ -441,7 +441,7 @@ elif selection == "b":
     print("Docking with multiple ligands")
     subprocess.run([
     "./gnina",
-    "--cpu",
+    "--no_gpu",
     "-r", f"{protein_directory}/{pdb_id}_A.pdbqt",
     "-l", f"{ligand_directory}/ligands_to_dock.sdf",
     "--autobox_ligand", f"{ligand_directory}/{ligand_id}_corrected_pose.sdf",
@@ -462,7 +462,7 @@ elif selection == "c":
     print("Flexible docking")
     subprocess.run([
     "./gnina",
-    "--cpu",
+    "--no_gpu",
     "-r", f"{protein_directory}/{pdb_id}_A.pdbqt",
     "-l", f"{ligand_directory}/{ligand_id}_ideal.sdf",
     "--autobox_ligand", f"{ligand_directory}/{ligand_id}_corrected_pose.sdf",
@@ -488,7 +488,7 @@ else:
     print("Whole protein docking")
     subprocess.run([
     "./gnina",
-    "--cpu",
+    "--no_gpu",
     "-r", f"{protein_directory}/{pdb_id}_A.pdbqt",
     "-l", f"{ligand_directory}/{ligand_id}_ideal.sdf",
     "--autobox_ligand", f"{protein_directory}/{pdb_id}_A.pdbqt",
