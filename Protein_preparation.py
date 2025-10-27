@@ -26,7 +26,7 @@ subprocess.run(['pip', 'install', 'rdkit', 'pdbfixer', 'openmm', 'mdanalysis', '
 # In[16]:
 
 
-#!pip install rdkit pdbfixer openmm mdanalysis molscrub py3dmol biopython
+#!pip install rdkit pdbfixer openmm mdanalysis molscrub py3dmol biopython ipython
 
 
 # In[3]:
