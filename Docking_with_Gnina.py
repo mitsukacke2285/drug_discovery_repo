@@ -432,7 +432,8 @@ if selection == "a":
     "--autobox_ligand", f"{ligand_directory}/{ligand_id}_corrected_pose.sdf",
     "-o", f"{docking_results_directory}/{ligand_id}_docked_{pdb_id}.sdf",
     "--seed", "0",
-    "--exhaustiveness", f"{ex}"
+    "--exhaustiveness", f"{ex}",
+    "--cpu"
     ])
 
 # Docking with multiple ligands
@@ -445,7 +446,8 @@ elif selection == "b":
     "--autobox_ligand", f"{ligand_directory}/{ligand_id}_corrected_pose.sdf",
     "-o", f"{docking_results_directory}/{ligand_id}_docked_{pdb_id}.sdf",
     "--seed", "0",
-    "--exhaustiveness", f"{ex}"
+    "--exhaustiveness", f"{ex}",
+    "--cpu"   
     ])
   #cmd = f"""./gnina \
   #-r {protein_directory}/{pdb_id}_A.pdbqt \
@@ -467,7 +469,8 @@ elif selection == "c":
     "--flexdist_ligand", f"{ligand_directory}/{ligand_id}_corrected_pose.sdf",
     "--flexdist", "3.59",
     "--seed", "0",
-    "--exhaustiveness", f"{ex}"
+    "--exhaustiveness", f"{ex}",
+    "--cpu"
     ])
   #cmd = f"""./gnina \
   #-r {protein_directory}/{pdb_id}_A.pdbqt \
@@ -490,7 +493,8 @@ else:
     "--autobox_ligand", f"{protein_directory}/{pdb_id}_A.pdbqt",
     "-o", f"{docking_results_directory}/{ligand_id}_docked_whole_{pdb_id}.sdf",
     "--seed", "0",
-    "--exhaustiveness", f"{ex}"
+    "--exhaustiveness", f"{ex}",
+    "--cpu"
     ])
   #cmd = f"""./gnina \
   #-r {protein_directory}/{pdb_id}_A.pdbqt \
