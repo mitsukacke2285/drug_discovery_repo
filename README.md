@@ -15,7 +15,7 @@ Scope and limitations:
 4. docking into unknown binding site(s)
 
 # Requirements/packages needed to be installed
-Biopython, Gnina, MDAnalysis, Numpy, OpenBabel, OpenMM, Os, PDBFixer, Requests, Rdkit utils, Scrubber, Subprocess
+Biopython, Gnina, MDAnalysis, Numpy, OpenBabel, OpenMM, Os, PDBFixer, Requests, Rdkit utils, Scrubber, Subprocess, a list of SMILES of compounds to be prepared for docking as a csv file
 NOTE: This workflow was run in WSL (Windows Subsystem for linux).
 
 # Installation
@@ -35,3 +35,17 @@ chmod +x gnina
 pip install biopython mdanalysis numpy openmm os pdbfixer requests useful_rdkit_utils scrubber subprocess
 
 conda install -c conda-forge openbabel
+
+# How to run
+In WSL type the following commands:
+
+python (your_folder)/Protein_preparation.py
+
+Packages will be installed; script will prompt you to enter a PDB ID for your target protein. The target protein will be prepared automatically and a pdbqt file will be generated at the end of the script.
+
+python (your_folder)/Ligand_preparation.py
+
+Packages will be installed; script will prompt you to enter a PDB ID for your target protein. The script will identify all ligands bound to the PDB structure and prompts you to select a ligand you are interested in. This ligand will be saved as a ligand_id variable and will stick with the rest of the script. Several ligand files (sdf, pdb) will be generated along the way. The final output is:
+1. a ligand that is pose corrected against an ideal ligand (downloaded automatically from https://www.rcsb.org/ and saved as {ligand_id}_ideal.sdf) and prepared by scrubber (aka molscrub) and saved as {ligand_id}.sdf.
+
+2. a file containing several scrubbed and pose corrected 
