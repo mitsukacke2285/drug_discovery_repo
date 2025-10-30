@@ -42,7 +42,7 @@ pip install biopython mdanalysis numpy openmm os pdbfixer requests useful_rdkit_
 
 conda install -c conda-forge openbabel 
 
-# How to run
+# Usage
 ## Protein preparation
 Type in the following command: python (your_folder)/Protein_preparation.py
 
