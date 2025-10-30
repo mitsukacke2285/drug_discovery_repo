@@ -20,8 +20,8 @@ NOTE: This workflow was run in WSL (Windows Subsystem for linux).
 
 # Installation
 When running the scripts, the packages should be installed automatically since the code is implemented in the script. 
-
 Should installation fail somehow, the packages can be installed manually via pip install or conda install -c conda-forge.
+When you are ready, open WSL.
 
 ## Get gnina
 wget https://github.com/gnina/gnina/releases/download/v1.3/gnina.fix
@@ -37,8 +37,6 @@ pip install biopython mdanalysis numpy openmm os pdbfixer requests useful_rdkit_
 conda install -c conda-forge openbabel 
 
 # How to run
-Start WSL.
-
 ## Protein preparation
 Type in the following command: python (your_folder)/Protein_preparation.py
 
