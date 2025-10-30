@@ -25,9 +25,12 @@ Should installation fail somehow, the packages can be installed manually via pip
 
 ## Get gnina
 wget https://github.com/gnina/gnina/releases/download/v1.3/gnina.fix
+
 ## Make gnina executable
 mv gnina.fix gnina
+
 chmod +x gnina
+
 ## Install packages
 pip install biopython mdanalysis numpy openmm os pdbfixer requests useful_rdkit_utils scrubber subprocess
 conda install -c conda-forge openbabel
