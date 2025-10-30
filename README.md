@@ -33,4 +33,5 @@ chmod +x gnina
 
 ## Install packages
 pip install biopython mdanalysis numpy openmm os pdbfixer requests useful_rdkit_utils scrubber subprocess
+
 conda install -c conda-forge openbabel
