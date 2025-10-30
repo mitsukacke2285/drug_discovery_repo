@@ -49,7 +49,10 @@ Type in the following command: python (your_folder)/Protein_preparation.py
 Packages will be installed; script will prompt you to enter a PDB ID for your target protein. Folders will be created (default is molecular_docking/protein_files). The target protein will be prepared automatically and a pdbqt file will be generated at the end of the script.
 
 ### Before running the next script
-Create a folder named "molecular_docking/ligand_structures" by typing mkdir -p molecular_docking/ligand_structures.
+Create a folder named "molecular_docking/ligand_structures" by typing 
+
+mkdir -p molecular_docking/ligand_structures.
+
 Save a csv file containing SMILES of compounds that you want to prepare for docking into the folder you just created.
 
 ## Ligand preparation
