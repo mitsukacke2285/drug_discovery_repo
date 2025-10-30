@@ -34,18 +34,29 @@ chmod +x gnina
 ## Install packages
 pip install biopython mdanalysis numpy openmm os pdbfixer requests useful_rdkit_utils scrubber subprocess
 
-conda install -c conda-forge openbabel
+conda install -c conda-forge openbabel 
 
 # How to run
-In WSL type the following commands:
+Start WSL.
 
-python (your_folder)/Protein_preparation.py
+## Protein preparation
+Type in the following command: python (your_folder)/Protein_preparation.py
 
-Packages will be installed; script will prompt you to enter a PDB ID for your target protein. The target protein will be prepared automatically and a pdbqt file will be generated at the end of the script.
+Packages will be installed; script will prompt you to enter a PDB ID for your target protein. Folders will be created (default is molecular_docking/protein_files). The target protein will be prepared automatically and a pdbqt file will be generated at the end of the script.
 
-python (your_folder)/Ligand_preparation.py
+### Before running the next script
+Create a folder named "molecular_docking/ligand_structures" by typing mkdir -p molecular_docking/ligand_structures.
+Save a csv file containing SMILES of compounds that you want to prepare for docking into the folder you just created.
 
-Packages will be installed; script will prompt you to enter a PDB ID for your target protein. The script will identify all ligands bound to the PDB structure and prompts you to select a ligand you are interested in. This ligand will be saved as a ligand_id variable and will stick with the rest of the script. Several ligand files (sdf, pdb) will be generated along the way. The final output is:
+## Ligand preparation
+type in the following command: python (your_folder)/Ligand_preparation.py
+
+Packages will be installed; script will prompt you to enter a PDB ID for your target protein. Folders will be created (default is molecular_docking/ligand_structures). The script will identify all ligands bound to the PDB structure and prompts you to select a ligand you are interested in. This ligand will be saved as a ligand_id variable and will stick with the rest of the script. Several ligand files (sdf, pdb) will be generated along the way. The final output is:
 1. a ligand that is pose corrected against an ideal ligand (downloaded automatically from https://www.rcsb.org/ and saved as {ligand_id}_ideal.sdf) and prepared by scrubber (aka molscrub) and saved as {ligand_id}.sdf.
 
-2. a file containing several scrubbed and pose corrected 
+2. an sdf file containing several scrubbed and pose corrected compounds obtained from the csv file.
+
+## Docking with Gnina
+type in the following command: python (your_folder)/Docking_with_Gnina.py
+
+Several packages will be instgalled, gnina will be downloaded and installed, and a folder named molecular_docking/docking_results will be created. The script will prompt you to enter the PDB ID and ligand ID used in the previous scripts to set the variables for the rest of the script. The you will prompted to select the docking mode by typing in the desired letter (selections a-d). After some time when the script finishes, the output will be a docked ligand sdf file (name output depends on the docking mode selected earlier). The results can be analyzed in an external program or script.
