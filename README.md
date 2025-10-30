@@ -9,8 +9,8 @@ This simple workflow for docking small molecule ligands into receptors is ideal 
 This workflow can be used by beginner and advanced users alike. The only input needed is the PDB id. The ligand(s) will be automatically identified after entering the PDB id in the ligand preparation module.
 
 Scope and limitations:
-1. rigid and flexible docking (later: free energy perturbation);
-2. small molecule ligand docking;
+1. rigid and flexible docking (later: free energy perturbation)
+2. small molecule ligand docking
 3. docking into known binding site of co-crystallized ligand
 4. docking into unknown binding site(s)
 
