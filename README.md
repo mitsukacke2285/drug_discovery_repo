@@ -12,17 +12,6 @@ Scope and limitations:
 4. docking into unknown binding site(s)
 
 # Requirements/packages needed to be installed
-Biopython
-Gnina
-MDAnalysis
-Numpy
-OpenBabel
-OpenMM
-Os
-PDBFixer
-Requests
-Rdkit
-Rdkit utils
-Scrubber
+Biopython, Gnina, MDAnalysis, Numpy, OpenBabel, OpenMM, Os, PDBFixer, Requests, Rdkit utils, Scrubber
 
 
