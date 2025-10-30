@@ -17,4 +17,5 @@ Scope and limitations:
 # Requirements/packages needed to be installed
 Biopython, Gnina, MDAnalysis, Numpy, OpenBabel, OpenMM, Os, PDBFixer, Requests, Rdkit utils, Scrubber, Subprocess
 
-
+# Installation
+When running the scripts, the packages should be installed automatically since the code is implemented in the script. Should installation fail somehow, the packages can be installed manually via pip install or conda install -c conda-forge.
