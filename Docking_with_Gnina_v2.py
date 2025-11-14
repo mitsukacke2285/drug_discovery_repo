@@ -451,13 +451,13 @@ import os
 os.makedirs("molecular_docking/docking_results", exist_ok=True)
 
 selection = input("Welcome to gnina. Please select the docking mode: \
-                        redocking extracted ligand (rmsd will be calculated): a \
-                        docking multiple ligands: b \
-                        flexible docking: c \
-                        whole protein docking: d \
+                        single docking (rmsd and cnn score will be calculated): a \
+                        batch docking: b \
+                        flexible docking (maximum exhaustiveness): c \
+                        docking on unknown sites: d \
                         ")
 
-ex = int(input("Define exhaustiveness (e.g. 8, 16, 24, 32, 40 etc.): "))
+ex = int(input("Define exhaustiveness (8, 16, 24, 32, 40, 48, 56, 64): "))
 ask_gpu = input("Run with GPU? [y/n]: ").strip().lower()
 ask_cnn = input("Run with CNN? [y/n]: ").strip().lower()
 
@@ -501,7 +501,7 @@ if selection == "a":
     "--seed", "0",
     "--exhaustiveness", f"{ex}",
     *gpu_flag,  # expands to nothing or ["--no_gpu"]
-    *cnn_flag  # expands to nothing or ["--cnn_scoring=none"]
+    #*cnn_flag  # expands to nothing or ["--cnn_scoring=none"]
     ])
     rmsd_calculation()
 
@@ -532,7 +532,7 @@ elif selection == "c":
     "--flexdist_ligand", f"{ligand_directory}/{ligand_id}_corrected_pose.sdf",
     "--flexdist", "3.59",
     "--seed", "0",
-    "--exhaustiveness", f"{ex}",
+    "--exhaustiveness 64"
     *gpu_flag,  # expands to nothing or ["--no_gpu"]
     *cnn_flag  # expands to nothing or ["--cnn_scoring=none"]
     ])
