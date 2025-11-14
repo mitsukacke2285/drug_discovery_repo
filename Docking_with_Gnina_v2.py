@@ -491,7 +491,7 @@ print(f"You have selected option {selection}.")
 
 # Redocking with extracted ligand
 if selection == "a":
-    print("Redocking with extracted ligand")
+    print("Single docking")
     subprocess.run([
     "./gnina",
     "-r", f"{protein_directory}/{pdb_id}_A.pdbqt",
@@ -507,7 +507,7 @@ if selection == "a":
 
 # Docking with multiple ligands
 elif selection == "b":
-    print("Docking with multiple ligands")
+    print("Batch docking")
     subprocess.run([
     "./gnina",
     "-r", f"{protein_directory}/{pdb_id}_A.pdbqt",
@@ -539,7 +539,7 @@ elif selection == "c":
 
 # Whole protein docking
 else:
-    print("Whole protein docking")
+    print("Docking on unknown site")
     subprocess.run([
     "./gnina",
     "-r", f"{protein_directory}/{pdb_id}_A.pdbqt",
