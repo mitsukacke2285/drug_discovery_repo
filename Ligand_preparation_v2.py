@@ -72,7 +72,7 @@ subprocess.run(['pip', 'install', 'rdkit', 'openmm', 'mdanalysis', 'molscrub', '
 
 # ## Step 2.1 Set protein and ligand directories
 
-# In[38]:
+# In[13]:
 
 
 import os
@@ -100,7 +100,7 @@ print("Ligand directory: The following folder has been created: ", ligand_filepa
 
 # ## Step 2.2 Determine residues nearby the ligand with MDAnalysis
 
-# In[39]:
+# In[17]:
 
 
 import MDAnalysis as mda
@@ -109,37 +109,59 @@ import MDAnalysis as mda
 u = mda.Universe(f"{protein_directory}/{pdb_id}_A.pdb")
 
 # Select atoms using the MDAnalysis selection language
-ligand_select = "segid A and record_type HETATM and not resname HOH"
-ligand = u.select_atoms(ligand_select)
+#ligand_select = "segid A and record_type HETATM and not resname HOH"
+ligand = u.select_atoms("not protein and not resname HOH")
+#ligand = u.select_atoms(ligand_select)
 
 # Find and residues within a certain distance from the ligand
-active_site = u.select_atoms(f"around 3.5 group ligand and segid A",
-                             periodic=False,
-                             ligand=ligand)  # Uses generic select_name=object as kwargs
-print("The residues of the active are: ", active_site.residues.resids)
+#active_site = u.select_atoms("around 3.5 group ligand and segid A",
+                            #periodic=False,
+                             #ligand=ligand)  # Uses generic select_name=object as kwargs
+active_site = u.select_atoms("around 3.5 group ligand", ligand=ligand)
+print(active_site.residues.resnames)
+
+print("The residues of the active site are: ", active_site.residues.resids)
+print(ligand.residues.resids)
+
+
+# In[15]:
+
+
+print(u.atoms[:20])  # look at first 20 atoms
+print(set(u.atoms.segids))  # see what segids exist
+print(set(u.atoms.resnames))  # see residue names
+
+
+# In[16]:
+
+
+ligand = u.select_atoms("not protein and not resname HOH")
+
+active_site = u.select_atoms("around 3.5 group ligand", ligand=ligand)
+print(active_site.residues.resnames)
+
+print("The residues of the active site are: ", active_site.residues.resids)
 print(ligand.residues.resids)
 
 
 # ## Step 2.3 Select ligand bound in PDB structure
 
-# In[40]:
+# In[61]:
 
 
 import numpy as np
 
 ligands = u.select_atoms("not protein and not water")
-i = -1 # index
+i = 0 # index
 ligand_residue_names = ligands.residues.resnames
 
 # Loop through all ligands present and prints out their code
-print("The following ligands have been found (index code): ")
-for lig in ligand_residue_names:
-  i = i+1
-  print(i, lig)
+unique_ligands = list(dict.fromkeys(ligand_residue_names))
+print("Ligands found:")
+for i, lig in enumerate(unique_ligands):
+    print(i, lig)
 
-# Select the index of your ligand of interest
-ligand_id = np.unique(ligand_residue_names)[int(input('Enter index of ligand of interest: '))]
-#ligand_id = np.unique(ligand_residue_names)[1]
+ligand_id = unique_ligands[int(input('Enter index: '))]
 print(f"You have selected {ligand_id} as your ligand.")
 
 
@@ -156,7 +178,7 @@ print(f"You have selected {ligand_id} as your ligand.")
 #     )
 # 
 
-# In[41]:
+# In[62]:
 
 
 # The following cell executes the code for downloading the ideal ligand, 
@@ -194,20 +216,23 @@ print(f"Saved ligand to {ideal_filepath}")
 
 # ## Step 2.5 Split the ligand out into its own PDB file from the experimental one
 
-# In[42]:
+# In[66]:
 
 
 # Split the ligand out into its own PDB file from the experimental one
-single_pose_ligand = ligand.select_atoms("segid A")
-single_pose_ligand.write(f"{ligand_directory}/{ligand_id}_fromPDB.pdb")
-print("Ligand extracted from original PDB!")
+#single_pose_ligand = ligand.select_atoms("segid A")
+#single_pose_ligand.write(f"{ligand_directory}/{ligand_id}_fromPDB.pdb")
+
+single_ligand = u.select_atoms(f"resname {ligand_id}")
+single_ligand.write(f"{ligand_directory}/{ligand_id}_fromPDB.pdb")
+print(f"Ligand {ligand_id} extracted from original PDB!")
 
 
 # # Step 3 Ligand preparation - Extracted ligand
 
 # ## Step 3.1 Rdkit - Partial preparation and correcting the pose of extracted ligand
 
-# In[43]:
+# In[67]:
 
 
 # The following cell executes the code to partially prepare and correct the 3D orientation (pose) of the extracted ligand,
@@ -254,7 +279,7 @@ writer.close()
 print("Extracted ligand fixed!")
 
 
-# In[44]:
+# In[68]:
 
 
 # Comparison of SMILES of prepared extracted ligand with ideal ligand
@@ -263,7 +288,7 @@ print(Chem.MolToSmiles(pose_mol_lf))
 print(Chem.MolToSmiles(ideal_mol))
 
 
-# In[45]:
+# In[69]:
 
 
 # Check our molecule from RDKit. Doesn't have rotation, but its neat to see in a Jupyter Notebook for just invoking it
